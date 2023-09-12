@@ -6,12 +6,12 @@ import productSlice from "../features/products/productSlice";
 const { configureStore } = require("@reduxjs/toolkit");
 
 const store = configureStore({
-    reducer:{
+    reducer: {
         cart: cartSlice,
         filter: filterSlice,
         products: productSlice,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
 });
 
 export default store;

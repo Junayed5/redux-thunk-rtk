@@ -12,35 +12,35 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getProducts())
-  }, []);
+  }, [products]);
 
   const activeClass = "text-white  bg-indigo-500 border-white";
 
   let content;
 
   if (products.length) {
-    content = products.map((product) => (
+    content = products?.map((product) => (
       <ProductCard key={product.model} product={product} />
     ))
   }
 
   if (products.length && (stock || brands.length)) {
     content = products
-    .filter(product => {
-      if (stock) {
-        return product.status === true
-      }
-      return product
-    })
-    .filter(product => {
-      if (brands.length) {
-        return brands.includes(product.brand)
-      }
-      return product
-    })
-    .map((product) => (
-      <ProductCard key={product.model} product={product} />
-    ))
+      ?.filter(product => {
+        if (stock) {
+          return product.status === true
+        }
+        return product
+      })
+      ?.filter(product => {
+        if (brands.length) {
+          return brands.includes(product.brand)
+        }
+        return product
+      })
+      ?.map((product) => (
+        <ProductCard key={product.model} product={product} />
+      ))
   }
 
   return (
@@ -54,12 +54,12 @@ const Home = () => {
         </button>
         <button
           onClick={() => dispatch(toggleBrand('amd'))}
-          className={`border px-3 py-2 rounded-full font-semibold ${brands?.includes('amd') ? activeClass: null}`}>
+          className={`border px-3 py-2 rounded-full font-semibold ${brands?.includes('amd') ? activeClass : null}`}>
           AMD
         </button>
         <button
           onClick={() => dispatch(toggleBrand('intel'))}
-          className={`border px-3 py-2 rounded-full font-semibold  ${brands?.includes('intel') ? activeClass: null}`}>
+          className={`border px-3 py-2 rounded-full font-semibold  ${brands?.includes('intel') ? activeClass : null}`}>
           Intel
         </button>
       </div>
